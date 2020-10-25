@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<p>Dali postoji subset zbroja 7 i koji je najniži u nizu 1, 5, 6, 3, 2 </p>
+<p id="demo"></p>
+
+<script>
+function allSubsets(arr, n, res) {
+				if (n === 0) {
+                    var count = 0;
+                    for (var i = 0; i < res.length; i++) {
+                        {
+                            if ((function (c) { return c.charCodeAt == null ? c : c.charCodeAt(0); })(res.charAt(i)) == '+'.charCodeAt(0)) {
+                                count++;
+                            }
+                        };
+                    }
+                    if (najmanji === -1 && count > 0)
+                        najmanji = count;
+                    if (count < najmanji)
+                        najmanji = count;
+                    return;
+                }
+                for (var i = 0; i < arr.length; i++) {
+                    {
+                        if (n >= arr[i]) {
+                            allSubsets(arr, n - arr[i], res + "+" + arr[i]);
+                        }
+                    };
+                }
+            };
+var arr = [1, 5, 6, 3, 2];
+var N = 7;
+var najmanji = -1;
+allSubsets(arr, N, "");
+document.getElementById("demo").innerHTML = najmanji;
+</script>
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+
+<html>
+<body>
+
+Upiši tekst za provjeru dali je Palindrom:
+<input type="text" id="Unos"></td>
+<input type="button" id="generate" value="Provjeri"></td>
+Rezultat:
+<input type="text" id="Ispis"></td>
+
+<script>
+document.getElementById('generate').onclick = function() {
+var tekst=document.getElementById('Unos').value;
+checkPalindrom(tekst);}
+function checkPalindrom(tekst) { //function that checks if palindrome or not
+    tekst=tekst.replace(/[^A-Za-z0-9]/g, '');
+	if(tekst.toLowerCase().split('').reverse().join('') === tekst.toLowerCase())
+		document.getElementById('Ispis').value = "true";
+	else
+		document.getElementById('Ispis').value = "false";
+}
+</script>
+</body>
+</html> 

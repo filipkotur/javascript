@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+
+<html>
+<body>
+
+<form>
+                    <table style="table-layout: fixed;width: 200px;" align="center">
+                        <tr>
+                            <td>
+                                <input type="button" id="Kamen" value="Kamen">
+                            </td>
+                            <td>
+                                <input type="button" id="Papir" value="Papir">
+                            </td>
+                            <td>
+                                <input type="button" id="Škare" value="Škare">
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>
+                                <h5>Kompjuter</h5>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td id="compOutput"></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h5>Pobjednik</h5>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" id="winOutput"></td>
+                        </tr>
+						
+                        <tr>
+                            <td><input type="button" id="generate" value="Novi krug"></td>
+                        </tr>
+                    </table>
+					<table align="center">
+					<tr>
+                            <td>
+                                <h5>Rezultat</h5>
+                            </td>
+                        </tr>
+					<tr>
+                            <td>IGRAČ</td><td id="result"></td><td>RAČUNALO</td>
+							</tr>
+					
+                    </table>
+                </form>
+<script>
+var winConditions = {
+  kamen: 'skare',
+  papir: 'kamen',
+  skare: 'papir'
+}
+var komputer = 0;
+var igrac = 0;
+
+function clickCounter(bodovi) {
+  if (typeof(Storage) !== "undefined") {
+    if (bodovi==="P") {
+      komputer=komputer+1;
+    } else {
+      igrac=igrac+ 1;
+    }
+    document.getElementById("result").innerHTML = komputer + " " + igrac;
+  } 
+}
+document.getElementById('generate').onclick = function() {
+komputer = 0;
+igrac=0;
+	document.getElementById("result").innerHTML = komputer + " " + igrac;
+}
+
+document.getElementById('Kamen').onclick = function() {
+	var userChoice = "kamen";
+	var computerChoice = ["kamen", "papir", "skare"][Math.floor(Math.random() * 3)];
+
+	compare(userChoice, computerChoice);
+}
+
+document.getElementById('Papir').onclick = function() {
+	var userChoice = "papir";
+	var computerChoice = ["kamen", "papir", "skare"][Math.floor(Math.random() * 3)];
+
+	compare(userChoice, computerChoice);
+}
+document.getElementById('Škare').onclick = function() {
+	var userChoice = "skare";
+	var computerChoice = ["kamen", "papir", "skare"][Math.floor(Math.random() * 3)];
+
+	compare(userChoice, computerChoice);
+}
+
+function compare(choice1, choice2) {
+  document.getElementById('compOutput').innerText = choice2;
+
+  if (choice1 === choice2) {
+    result = 'Izjednačeno!';
+  } else if (winConditions[choice1] === choice2) {
+  	result = 'Igrac!';
+    bodovi = "P";
+    clickCounter(bodovi);
+  } else {
+  	result = 'Kompjutor';
+    bodovi = "C";
+    clickCounter(bodovi);
+  }
+  
+  document.getElementById('winOutput').value = result;
+}
+</script>
+
+</body>
+</html> 
